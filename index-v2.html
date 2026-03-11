@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Content Playbook by Kleo</title>
+
+  <!-- RightMessage -->
+  <script type="text/javascript">
+  (function(p, a, n, d, o, b, c) {
+    window.RM = window.RM || [];
+    o = n.createElement('script'); o.type = 'text/javascript'; o.async = true; o.src = 'https://t.rightmessage.com/'+p+'.js';
+    b = n.getElementsByTagName('script')[0]; d = function(h, u, i, s) { var c = n.createElement('style'); c.id = 'rmcloak'+i;
+        c.type = 'text/css'; c.appendChild(n.createTextNode('.rmcloak'+h+'{visibility:hidden}.rmcloak'+u+'{display:none}'+s));
+        b.parentNode.insertBefore(c, b); return c; }; c = d('', '-hidden', '', '[data-rm-if],[data-rm-else-if],[data-rm-else]{display:none}'); d('-stay-invisible', '-stay-hidden', '-stay', '');
+    setTimeout(o.onerror = function() { c.parentNode && c.parentNode.removeChild(c); }, a); b.parentNode.insertBefore(o, b);
+  })('471959352', 20000, document);
+  </script>
+
+  <!-- Geist Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #f9f8f6;
+      --card-bg: #ffffff;
+      --text-primary: #09090b;
+      --text-secondary: #71717a;
+      --accent-blue: #157dff;
+      --accent-blue-light: rgba(191, 219, 254, 0.35);
+      --accent-cyan-light: rgba(165, 243, 252, 0.35);
+      --accent-green: #22c55e;
+      --border: #e4e4e7;
+      --radius: 16px;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Decorative blobs matching Kleo's animated gradient orbs */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .blob-1 {
+      width: 320px;
+      height: 320px;
+      top: 60px;
+      left: 40px;
+      background: linear-gradient(to right, var(--accent-blue-light), var(--accent-cyan-light));
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    .blob-2 {
+      width: 280px;
+      height: 280px;
+      bottom: 80px;
+      right: 60px;
+      background: linear-gradient(to left, rgba(134, 239, 172, 0.25), rgba(165, 243, 252, 0.25));
+      animation: pulse 5s ease-in-out infinite 1s;
+    }
+
+    .blob-3 {
+      width: 200px;
+      height: 200px;
+      top: 50%;
+      right: 20%;
+      background: linear-gradient(to bottom, rgba(196, 181, 253, 0.2), rgba(191, 219, 254, 0.2));
+      animation: pulse 6s ease-in-out infinite 2s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.05); }
+    }
+
+    /* Page layout */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header / Nav */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 32px;
+      width: auto;
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px 60px;
+    }
+
+    /* The card container */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+      width: 100%;
+      max-width: 960px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      overflow: hidden;
+    }
+
+    /* Left column — copy */
+    .copy-col {
+      padding: 52px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+      min-height: 420px;
+    }
+
+    /* Success badge */
+    .success-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      color: #16a34a;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      width: fit-content;
+      letter-spacing: 0.01em;
+    }
+
+    .success-badge .check-icon {
+      width: 16px;
+      height: 16px;
+      background: #22c55e;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .success-badge .check-icon svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    /* Headline */
+    .headline {
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .headline .highlight {
+      color: var(--accent-blue);
+    }
+
+    /* Subheadline */
+    .subheadline {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 28px;
+    }
+
+    /* Body copy */
+    .body-copy {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .body-copy strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .body-copy .cta-text {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Timer / quick note */
+    .quick-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 24px;
+      padding: 12px 16px;
+      background: #f4f4f5;
+      border-radius: 10px;
+    }
+
+    .quick-note svg {
+      flex-shrink: 0;
+      color: var(--accent-blue);
+    }
+
+    /* Right column — survey widget */
+    .survey-col {
+      padding: 52px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #fafafa;
+      min-height: 420px;
+    }
+
+    .survey-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .rm-area-segmentation-survey-widget {
+      width: 100%;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px 24px 32px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer a {
+      color: var(--text-secondary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer a:hover {
+      color: var(--text-primary);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .header {
+        padding: 16px 20px;
+      }
+
+      .main {
+        padding: 24px 16px 48px;
+        align-items: flex-start;
+      }
+
+      .card {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+      }
+
+      .copy-col {
+        padding: 36px 28px 28px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .survey-col {
+        padding: 28px 28px 36px;
+      }
+
+      .blob-1 {
+        width: 200px;
+        height: 200px;
+        top: 20px;
+        left: -40px;
+      }
+
+      .blob-2 {
+        width: 160px;
+        height: 160px;
+        bottom: 40px;
+        right: -20px;
+      }
+
+      .blob-3 {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .copy-col {
+        padding: 28px 20px 24px;
+      }
+
+      .survey-col {
+        padding: 24px 20px 28px;
+      }
+
+      .headline {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Decorative gradient blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="page-wrapper">
+
+    <!-- Header -->
+    <header class="header">
+      <a href="https://kleo.so" class="logo" aria-label="Kleo">
+        <img src="https://app.kleo.so/images/kleo.svg" alt="Kleo" />
+      </a>
+    </header>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="card">
+
+        <!-- Left: Copy -->
+        <div class="copy-col">
+
+          <div class="success-badge">
+            <span class="check-icon">
+              <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 5.5L4 7.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            You're in!
+          </div>
+
+          <h1 class="headline">
+            Amazing! Thanks for<br />
+            <span class="highlight">letting us know.</span>
+          </h1>
+
+          <p class="subheadline">
+            The Content Playbook by Kleo newsletter will hit your inbox this Sunday. Keep an eye out.
+          </p>
+
+          <div class="divider"></div>
+
+          <p class="body-copy">
+            <strong>In the meantime…</strong>
+          </p>
+
+          <p class="body-copy" style="margin-top: 8px;">
+            Would you mind answering these <strong>7 quick questions?</strong>
+          </p>
+
+          <p class="body-copy" style="margin-top: 8px;">
+            This ensures the content you receive is <strong>highly relevant</strong> to where you are right now.
+          </p>
+
+          <div class="quick-note">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M8 5V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="8" cy="11" r="0.75" fill="currentColor"/>
+            </svg>
+            Takes less than 60 seconds
+          </div>
+
+        </div>
+
+        <!-- Right: Survey Widget -->
+        <div class="survey-col">
+          <div class="rm-area-segmentation-survey-widget"></div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <a href="https://kleo.so/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+    </footer>
+
+  </div>
+
+</body>
+</html>
